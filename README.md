@@ -59,6 +59,13 @@ ConsoleLogger.return x
 
 Finally to actually pass a log message down to a consumer you can use `==|`. This operator will pass the current value along to the result of the operator with no change while adding the message being applied to the consumer.
 
+```ocaml
+...
+ConsoleLogger.return x
+==| Message.make None Information "Hello, world."
+...
+```
+
 ## Acknowledgements
 
 ### .gitignore
