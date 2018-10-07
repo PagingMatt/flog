@@ -42,7 +42,7 @@ If you need to just apply a function to the wrapped value and the function knows
 let f x = x + 1
 ...
 ConsoleLogger.return x
->=> f
+=>= f
 ...
 ```
 
@@ -63,6 +63,23 @@ Finally to actually pass a log message down to a consumer you can use `==|`. Thi
 ...
 ConsoleLogger.return x
 ==| Message.make None Information "Hello, world."
+...
+```
+
+The result of these? A nice functional-looking, concise logging library:
+
+```ocaml
+...
+module ConsoleLogger = Logger(ConsoleConsumer)
+...
+let f x = x + 1
+let g x = ConsoleLogger.return (x + 1)
+...
+let x = y in
+ConsoleLogger.return x
+=>= f
+==| Message.make None Information "Hello, world."
+=>| g
 ...
 ```
 
