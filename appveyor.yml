@@ -24,7 +24,7 @@ before_test:
 test_script:
 after_test:
 artifacts:
-  - path: lib_build.zip
+  - path: lib/lib_build.zip
     name: lib_build
     type: zip
 before_deploy:
