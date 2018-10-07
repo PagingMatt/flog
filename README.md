@@ -46,7 +46,18 @@ ConsoleLogger.return x
 ...
 ```
 
+If you need to apply a function to the wrapped value and that function itself returns a value wrapped in the logging monad then you can use `=>|` (monad bind). This benefits from one of the cool things about this library which is the assumption that any consumer of log messages is implemented following the monoid laws. This means that they can be associatively combined - making this bind operator able to combine two streams of logging.
 
+```ocaml
+...
+let f x = ConsoleLogger.return (x + 1)
+...
+ConsoleLogger.return x
+=>| f
+...
+```
+
+Finally to actually pass a log message down to a consumer you can use `==|`. This operator will pass the current value along to the result of the operator with no change while adding the message being applied to the consumer.
 
 ## Acknowledgements
 
