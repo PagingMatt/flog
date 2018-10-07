@@ -4,10 +4,10 @@
       - Associativity: Must be guaranteed by implementation of the signature.
       - Identity: From the empty/new consumer. *)
 module type Consumer = sig
-  (** Consumer type *)
+  (** Consumer type. *)
   type t
 
-  (** Consumer identity value *)
+  (** Consumer identity value. *)
   val empty : t
 
   (** Combiner function - any implementations of this signature must guarantee
