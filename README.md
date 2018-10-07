@@ -16,7 +16,7 @@ module ConsoleLogger = Logger(ConsoleConsumer)
 ...
 ```
 
-Once you've applied the `Logger` functor to a `Consumer` implementation you are ready to start logging. As this is a _'functional-y'_ library this is done ffrom within a monad, you lift up into the monad via `Logger.return`.
+Once you've applied the `Logger` functor to a `Consumer` implementation you are ready to start logging. As this is a _'functional-y'_ library this is done from within a monad, you lift up into the monad via `Logger.return`. This lift does no logging itself.
 
 ```ocaml
 ...
