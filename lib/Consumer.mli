@@ -1,3 +1,5 @@
+open Message
+
 (** Signature for the combinable message consumers which satisfy the monoid
     laws:
       - Closure: Combining two consumers results in a consumer.
@@ -15,7 +17,7 @@ module type Consumer = sig
   val combine : t -> t -> t
 
   (** Function to drive consumption of messages. *)
-  val consume : t -> string -> t
+  val consume : t -> Message.t -> t
 end
 
 (** Simple message consumer which synchronously drops messages out onto the
