@@ -1,3 +1,5 @@
+open Message
+
 module type Consumer = sig
   type t
 
@@ -15,6 +17,6 @@ module ConsoleConsumer : Consumer = struct
 
   let combine (_:t) (_:t) = ()
 
-  let consume (_:t) (msg:string) =
-    print_string msg
+  let consume (_:t) (msg:Message.t) =
+    string_of_message msg
 end

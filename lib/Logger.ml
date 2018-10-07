@@ -1,4 +1,5 @@
 open Consumer
+open Message
 
 module Logger (C : Consumer) : sig
   type 'a t
@@ -9,7 +10,7 @@ module Logger (C : Consumer) : sig
 
   val (=>|) : 'a t -> ('a -> 'b t) -> 'b t
 
-  val (==|) : 'a t -> string -> 'a t
+  val (==|) : 'a t -> Message.t -> 'a t
 end = struct
   type 'a t = 'a * C.t
 

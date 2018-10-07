@@ -1,4 +1,5 @@
 open Consumer
+open Message
 
 (** Logger functor wraps around some message consumer. Therefore it is the
     responsibility of the consumer to actually handle the messages. The concern
@@ -24,8 +25,6 @@ module Logger (C : Consumer) : sig
 
   (** Taking a value already lifted into the logging monad and a message to
       pass down the logging consumer, handle the message and pass along the log
-      state.
-
-      TODO: a Message.t should be broken out rather than this being a string. *)
-  val (==|) : 'a t -> string -> 'a t
+      state. *)
+  val (==|) : 'a t -> Message.t -> 'a t
 end
