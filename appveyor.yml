@@ -1,0 +1,34 @@
+version: '0.0.{build}'
+image:
+  - Ubuntu
+branches:
+  only:
+  - master
+deploy: off
+init:
+install:
+  - sh: sudo apt-get update
+  - sh: sudo apt-get -y install ocaml opam
+  - sh: opam init --auto-setup
+  - sh: eval `opam config env`
+  - sh: opam switch 4.07.0
+  - sh: eval `opam config env`
+before_build:
+  - sh: opam install dune
+build_script:
+  - sh: cd lib
+  - sh: dune build monoidl.a
+after_build:
+  - sh: 7z a lib_build.zip _build/*
+before_test:
+test_script:
+after_test:
+artifacts:
+  - path: lib/lib_build.zip
+    name: lib_build
+    type: zip
+before_deploy:
+after_deploy:
+on_success:
+on_failure:
+on_finish:
