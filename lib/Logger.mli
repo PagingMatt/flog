@@ -22,6 +22,8 @@ module Logger (C : Consumer) : sig
 
   (** Taking a value already lifted into the logging monad and a message to
       pass down the logging consumer, handle the message and pass along the log
-      state. *)
+      state.
+
+      TODO: a Message.t should be broken out rather than this being a string. *)
   val (==|) : 'a t -> string -> 'a t
 end
