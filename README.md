@@ -2,7 +2,7 @@
 
 Lightweight and plug-able OCaml logger with monoidal message consumers for composability.
 
-[![Build status](https://ci.appveyor.com/api/projects/status/00kimknfcl7m369g/branch/master?svg=true)](https://ci.appveyor.com/project/m-harrison/monoidl/branch/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/00kimknfcl7m369g/branch/master?svg=true)](https://ci.appveyor.com/project/m-harrison/monoidl/branch/master) [![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg)](https://github.com/m-harrison/monoidl/blob/master/LICENSE.md)
 
 ## Usage
 
