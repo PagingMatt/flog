@@ -9,7 +9,7 @@ init:
 install:
   - sh: sudo apt-get update
   - sh: sudo apt-get -y install ocaml opam
-  - sh: opam init -y
+  - sh: opam init -y --bare
   - sh: eval `opam config env`
   - sh: opam switch 4.07.0
   - sh: eval `opam config env`
