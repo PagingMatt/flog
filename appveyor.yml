@@ -1,0 +1,21 @@
+version: '0.0.{build}'
+image:
+  - Ubuntu
+branches:
+  only:
+  - master
+deploy: off
+init:
+install:
+before_build:
+build_script:
+after_build:
+before_test:
+test_script:
+after_test:
+artifacts:
+before_deploy:
+after_deploy:
+on_success:
+on_failure:
+on_finish:
