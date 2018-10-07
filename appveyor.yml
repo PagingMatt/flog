@@ -7,8 +7,18 @@ branches:
 deploy: off
 init:
 install:
+  - sh: sudo add-apt-repository ppa:avsm/ppa
+  - sh: sudo apt-get update
+  - sh: sudo apt-get install ocaml opam
+  - sh: opam init
+  - sh: eval `opam config env`
+  - sh: opam switch 4.07.0
+  - sh: eval `opam config env`
 before_build:
+  - sh: opam install dune
 build_script:
+  - sh: cd lib
+  - sh: dune build monoidl.a
 after_build:
 before_test:
 test_script:
