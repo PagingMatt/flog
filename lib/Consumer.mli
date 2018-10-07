@@ -4,12 +4,17 @@
       - Associativity: Must be guaranteed by implementation of the signature.
       - Identity: From the empty/new consumer. *)
 module type Consumer = sig
+  (** Consumer type *)
   type t
 
+  (** Consumer identity value *)
   val empty : t
 
+  (** Combiner function - any implementations of this signature must guarantee
+      the associativity of the of this. *)
   val combine : t -> t -> t
 
+  (** Function to drive consumption of messages. *)
   val consume : t -> string -> t
 end
 
