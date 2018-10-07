@@ -1,9 +1,11 @@
+open Consumer
+
 (** Logger functor wraps around some message consumer. Therefore it is the
     responsibility of the consumer to actually handle the messages. The concern
     of the Logger is purely to arrange computations within the logging monad. *)
 module Logger (C : Consumer) : sig
   (** Logger type. *)
-  type t
+  type 'a t
 
   (** Lift a value up into the logging monad. *)
   val return : 'a -> 'a t
