@@ -2,7 +2,86 @@
 
 Lightweight and plug-able OCaml logger with monoidal message consumers for composability.
 
-[![Build status](https://ci.appveyor.com/api/projects/status/00kimknfcl7m369g/branch/master?svg=true)](https://ci.appveyor.com/project/m-harrison/monoidl/branch/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/00kimknfcl7m369g/branch/master?svg=true)](https://ci.appveyor.com/project/m-harrison/monoidl/branch/master) [![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg)](https://github.com/m-harrison/monoidl/blob/master/LICENSE.md)
+
+## Usage
+
+The idea behind this library is to give a very functional interface to log OCaml code via, even though the action of logging itself might intrinsically be non-functional. Your code need-not suffer from such icki-ness though!
+
+To use the library you need to start by choosing the `Consumer` implementation you want to use. This is important as it determines how your log messages get handled. `monoidl` provides a selection of these for you to choose from, but if none are suitable then you can implement one of your own (I promised that this was an extendable library!)
+
+```ocaml
+...
+module ConsoleLogger = Logger(ConsoleConsumer)
+...
+```
+
+Once you've applied the `Logger` functor to a `Consumer` implementation you are ready to start logging. As this is a _'functional-y'_ library this is done from within a monad, you lift up into the monad via `Logger.return`. This lift does no logging itself.
+
+```ocaml
+...
+let x = y in
+ConsoleLogger.return x
+...
+```
+
+Now your value is wrapped in the monad there are three infix operators that can drive your computation.
+
+```ocaml
+val (=>=) : 'a t -> ('a -> 'b) -> 'b t
+
+val (=>|) : 'a t -> ('a -> 'b t) -> 'b t
+
+val (==|) : 'a t -> Message.t -> 'a t
+```
+
+If you need to just apply a function to the wrapped value and the function knows nothing about `monoidl` you can use `=>=` to drive the wrapped value along.
+
+```ocaml
+...
+let f x = x + 1
+...
+ConsoleLogger.return x
+=>= f
+...
+```
+
+If you need to apply a function to the wrapped value and that function itself returns a value wrapped in the logging monad then you can use `=>|` (monad bind). This benefits from one of the cool things about this library which is the assumption that any consumer of log messages is implemented following the monoid laws. This means that they can be associatively combined - making this bind operator able to combine two streams of logging.
+
+```ocaml
+...
+let f x = ConsoleLogger.return (x + 1)
+...
+ConsoleLogger.return x
+=>| f
+...
+```
+
+Finally to actually pass a log message down to a consumer you can use `==|`. This operator will pass the current value along to the result of the operator with no change while adding the message being applied to the consumer.
+
+```ocaml
+...
+ConsoleLogger.return x
+==| Message.make None Information "Hello, world."
+...
+```
+
+The result of these? A nice functional-looking, concise logging library:
+
+```ocaml
+...
+module ConsoleLogger = Logger(ConsoleConsumer)
+...
+let f x = x + 1
+let g x = ConsoleLogger.return (x + 1)
+...
+let x = y in
+ConsoleLogger.return x
+=>= f
+==| Message.make None Information "Hello, world."
+=>| g
+...
+```
 
 ## Acknowledgements
 
