@@ -7,7 +7,7 @@ module type Consumer = sig
 
   val combine : t -> t -> t
 
-  val consume : t -> string -> t
+  val consume : t -> Message.t -> t
 end
 
 module ConsoleConsumer : Consumer = struct
@@ -17,6 +17,6 @@ module ConsoleConsumer : Consumer = struct
 
   let combine (_:t) (_:t) = ()
 
-  let consume (_:t) (msg:Message.t) =
-    string_of_message msg
+  let consume (c:t) (msg:Message.t) =
+    print_string (Message.string_of_message msg); c
 end
