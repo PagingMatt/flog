@@ -8,8 +8,9 @@ module Logger (C : Consumer) : sig
   (** Logger type. *)
   type 'a t
 
-  (** Lift a value up into the logging monad. *)
-  val return : 'a -> 'a t
+  (** Opens a region that needs to be logged by lifting a value up into the
+      logging monad provided by monoidl. *)
+  val start : 'a -> 'a t
 
   (** Taking a value already lifted into the logging monad, apply a function to
       the value and then lift the result into the monad. This performs no
@@ -27,4 +28,10 @@ module Logger (C : Consumer) : sig
       pass down the logging consumer, handle the message and pass along the log
       state. *)
   val (==|) : 'a t -> Message.t -> 'a t
+
+  (** When the region that needs to be logged is exited the log can be closed.
+      The result of this is the value currently wrapped in the monad and
+      possibly a collection of messages should state be maintained by the
+      consumer. *)
+  val stop : 'a t -> 'a * (Message.t list) option
 end
