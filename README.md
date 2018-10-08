@@ -4,6 +4,8 @@ Lightweight and plug-able OCaml logger with monoidal message consumers for compo
 
 [![Build status](https://ci.appveyor.com/api/projects/status/00kimknfcl7m369g/branch/master?svg=true)](https://ci.appveyor.com/project/m-harrison/monoidl/branch/master) [![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg)](https://github.com/m-harrison/monoidl/blob/master/LICENSE.md)
 
+API documentation for the package can be viewed [here](https://cdn.rawgit.com/m-harrison/monoidl-dev-docs/616c959/www/monoidl/Monoidl/index.html).
+
 ## Usage
 
 The idea behind this library is to give a very functional interface to log OCaml code via, even though the action of logging itself might intrinsically be non-functional. Your code need-not suffer from such icki-ness though!
