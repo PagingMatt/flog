@@ -88,16 +88,12 @@ module ConsoleLogger = Logger(ConsoleConsumer)
 let f x = x + 1
 let g x = ConsoleLogger.start (x + 1)
 ...
-let x = 2 in
-ConsoleLogger.start x
+ConsoleLogger.start 2
 =>= f
 ==| Message.make None Information "Hello, world."
 =>| g
 |> ConsoleLogger.stop
-|> fun x,ms ->
-  match ms with
-  | None          -> ...
-  | Some messages -> ...
+|> fun x,ms -> ...
 ...
 ```
 
