@@ -16,7 +16,7 @@ install:
 before_build:
   - sh: opam install dune
 build_script:
-  - sh: dune build monoidl.a
+  - sh: dune build
   - sh: dune build @doc
 after_build:
   - sh: 7z a build.zip _build/*
