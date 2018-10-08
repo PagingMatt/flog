@@ -16,12 +16,12 @@ module ConsoleLogger = Logger(ConsoleConsumer)
 ...
 ```
 
-Once you've applied the `Logger` functor to a `Consumer` implementation you are ready to start logging. As this is a _'functional-y'_ library this is done from within a monad, you lift up into the monad via `Logger.return`. This lift does no logging itself.
+Once you've applied the `Logger` functor to a `Consumer` implementation you are ready to start logging. As this is a _'functional-y'_ library this is done from within a monad, you lift up into the monad via `Logger.start`. This lift does no logging itself.
 
 ```ocaml
 ...
-let x = y in
-ConsoleLogger.return x
+let x = 2 in
+ConsoleLogger.start x
 ...
 ```
 
@@ -41,7 +41,7 @@ If you need to just apply a function to the wrapped value and the function knows
 ...
 let f x = x + 1
 ...
-ConsoleLogger.return x
+ConsoleLogger.start 2
 =>= f
 ...
 ```
@@ -50,19 +50,32 @@ If you need to apply a function to the wrapped value and that function itself re
 
 ```ocaml
 ...
-let f x = ConsoleLogger.return (x + 1)
+let f x = ConsoleLogger.start (x + 1)
 ...
-ConsoleLogger.return x
+ConsoleLogger.start 2
 =>| f
 ...
 ```
 
-Finally to actually pass a log message down to a consumer you can use `==|`. This operator will pass the current value along to the result of the operator with no change while adding the message being applied to the consumer.
+To actually pass a log message down to a consumer you can use `==|`. This operator will pass the current value along to the result of the operator with no change while adding the message being applied to the consumer.
 
 ```ocaml
 ...
-ConsoleLogger.return x
+ConsoleLogger.start x
 ==| Message.make None Information "Hello, world."
+...
+```
+
+Finally when logging is complete you can drop back out of the monad with the `Logger.stop` function. This unwraps the value wrapped by the logger type and also contractually calls `flush` on the underlying consumer. `flush` may pass some state back in the form of a set of messages.
+
+```ocaml
+...
+ConsoleLogger.start x
+|> ConsoleLogger.stop
+|> fun x,ms ->
+  match ms with
+  | None          -> ...
+  | Some messages -> ...
 ...
 ```
 
@@ -73,13 +86,18 @@ The result of these? A nice functional-looking, concise logging library:
 module ConsoleLogger = Logger(ConsoleConsumer)
 ...
 let f x = x + 1
-let g x = ConsoleLogger.return (x + 1)
+let g x = ConsoleLogger.start (x + 1)
 ...
-let x = y in
-ConsoleLogger.return x
+let x = 2 in
+ConsoleLogger.start x
 =>= f
 ==| Message.make None Information "Hello, world."
 =>| g
+|> ConsoleLogger.stop
+|> fun x,ms ->
+  match ms with
+  | None          -> ...
+  | Some messages -> ...
 ...
 ```
 
