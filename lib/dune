@@ -1,2 +1,7 @@
 (library
- (name monoidl))
+ (name monoidl)
+ (public_name monoidl))
+
+(documentation
+ (package monoidl))
+
