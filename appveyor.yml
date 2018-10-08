@@ -14,18 +14,18 @@ install:
   - sh: opam switch 4.07.0
   - sh: eval `opam config env`
 before_build:
-  - sh: opam install dune
+  - sh: opam install -y dune odoc
 build_script:
-  - sh: cd lib
-  - sh: dune build monoidl.a
+  - sh: dune build
+  - sh: dune build @doc
 after_build:
-  - sh: 7z a lib_build.zip _build/*
+  - sh: 7z a build.zip _build/*
 before_test:
 test_script:
 after_test:
 artifacts:
-  - path: lib/lib_build.zip
-    name: lib_build
+  - path: build.zip
+    name: build
     type: zip
 before_deploy:
 after_deploy:
