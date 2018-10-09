@@ -12,7 +12,7 @@ homepage: "https://github.com/m-harrison/monoidl"
 bug-reports: "https://github.com/m-harrison/monoidl/issues"
 dev-repo: "https://github.com/m-harrison/monoidl"
 build: ["dune" "build" "-p" monoidl]
-build-test: ["dune" "runtest" "lib_tests"]
+build-test: [["dune" "runtest" "-p" monoidl "-j" jobs]]
 depends: [
   "alcotest"
   "dune"
