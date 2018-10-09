@@ -2,7 +2,11 @@
     laws:
       - Closure: Combining two consumers results in a consumer.
       - Associativity: Must be guaranteed by implementation of the signature.
-      - Identity: From the empty/new consumer. *)
+      - Identity: From the empty/new consumer.
+
+    This means that combining two consumers is lightweight and implementing a
+    monadic bind operator at the Logger.t level to combine multiple streams of
+    logging becomes trivial. *)
 module type Consumer = sig
   (** Consumer type. *)
   type t
