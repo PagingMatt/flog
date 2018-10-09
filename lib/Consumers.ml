@@ -1,5 +1,3 @@
-open Message
-
 module type Consumer = sig
   type t
 

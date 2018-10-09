@@ -1,5 +1,4 @@
-open Consumer
-open Message
+open Consumers
 
 module Logger (C : Consumer) : sig
   type 'a t
