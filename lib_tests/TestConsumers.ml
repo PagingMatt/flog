@@ -1,7 +1,8 @@
-open Consumers
+open Monoidl
+open Monoidl.Consumers
 
 module ListConsumer : Consumer = struct
-  type t = string list
+  type t = Message.t list
 
   let empty : t = []
 
