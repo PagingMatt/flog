@@ -3,7 +3,7 @@
 
 open Unix
 
-(** Logging levels. *)
+(** The levels at which messages are logged. *)
 type level =
   | Trace
   | Debug
@@ -19,5 +19,5 @@ type t
     current UTC time when called will be stamped onto the message. *)
 val make : tm option -> level -> string -> t
 
-(** Helper to serialize messages. *)
+(** Helper function to serialize messages. *)
 val string_of_message : t -> string
