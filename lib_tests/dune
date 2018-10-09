@@ -1,0 +1,4 @@
+(test
+ (name monoidl_unit_tests)
+ (libraries alcotest monoidl))
+ 

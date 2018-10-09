@@ -19,10 +19,12 @@ build_script:
   - sh: dune build
   - sh: dune build @doc
 after_build:
-  - sh: 7z a build.zip _build/*
 before_test:
+  - sh: opam install -y alcotest
 test_script:
+  - sh: dune build @runtest
 after_test:
+  - sh: 7z a build.zip _build/*
 artifacts:
   - path: build.zip
     name: build
