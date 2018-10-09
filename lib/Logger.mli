@@ -1,5 +1,4 @@
-open Consumer
-open Message
+open Consumers
 
 (** Logger functor wraps around some message consumer. Therefore it is the
     responsibility of the consumer to actually handle the messages. The concern

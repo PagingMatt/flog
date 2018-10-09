@@ -1,5 +1,3 @@
-open Message
-
 (** Signature for the combinable message consumers which satisfy the monoid
     laws:
       - Closure: Combining two consumers results in a consumer.
