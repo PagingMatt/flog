@@ -16,8 +16,12 @@ type level =
 type t
 
 (** Constructor for the Message.t type. If no time is passed in then the
-    current UTC time when called will be stamped onto the message. *)
+    current UTC time when called will be stamped onto the message.
+
+    @return The message constructed of the parameters passed in. *)
 val make : tm option -> level -> string -> t
 
-(** Helper function to serialize messages. *)
+(** Helper function to serialize messages.
+
+    @return The serialized the message passed in.*)
 val string_of_message : t -> string

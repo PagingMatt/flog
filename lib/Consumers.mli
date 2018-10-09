@@ -7,19 +7,28 @@ module type Consumer = sig
   (** Consumer type. *)
   type t
 
-  (** Consumer identity value. *)
+  (** Consumer identity value.
+
+      @return An 'empty' or 'new' consumer which behaves as the identity value
+              for the Consumer monoid. *)
   val empty : t
 
-  (** Combiner function - any implementations of this signature must guarantee
-      the associativity of the of this. *)
+  (** Associative combiner function.
+
+      @return The associative combination of the two Consumers. *)
   val combine : t -> t -> t
 
-  (** Function to drive consumption of messages. *)
+  (** Function to drive consumption of messages. 
+
+      @return The consumer which is the result of the inital consumer consuming
+              the message passed in. *)
   val consume : t -> Message.t -> t
 
   (** Contractually called when the logger is closed, this optionally can
       return the state held by the logger or can just be used to side-effect
-      and guarantee the flushing of messages held in the consumer. *)
+      and guarantee the flushing of messages held in the consumer.
+
+      @return The state inside the consumer if it exists. *)
   val flush : t -> (Message.t list) option
 end
 
