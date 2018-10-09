@@ -21,6 +21,13 @@ type t
     @return The message constructed of the parameters passed in. *)
 val make : tm option -> level -> string -> t
 
+(** Compares two messages based on the time they were logged at. Ensures that
+    more recent messages appear first.
+
+    @return A negative [int] if [a] is greater than [b], [0] if they are equal
+            and a positive [int] if [a] is less than [b].*)
+val cmp_tm : t -> t -> int
+
 (** Helper function to serialize messages.
 
     @return The serialized the message passed in.*)
