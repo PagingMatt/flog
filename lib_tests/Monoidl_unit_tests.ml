@@ -1,5 +1,3 @@
-open Monoidl
-
 let unit_test_suite = []
 
 let () =
