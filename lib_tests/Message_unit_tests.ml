@@ -1,4 +1,4 @@
-open Monoidl.Message
+open Flog.Message
 open Unix
 
 let tm_a = gmtime 1514764801.0

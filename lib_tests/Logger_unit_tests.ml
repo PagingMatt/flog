@@ -1,5 +1,5 @@
-open Monoidl.Logger
-open Monoidl.Message
+open Flog.Logger
+open Flog.Message
 open Unix
 
 include Logger(TestConsumers.ListConsumer)

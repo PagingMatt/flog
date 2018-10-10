@@ -1,4 +1,4 @@
 (test
- (name monoidl_unit_tests)
- (libraries alcotest monoidl))
+ (name flog_unit_tests)
+ (libraries alcotest flog))
  
