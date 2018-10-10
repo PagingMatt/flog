@@ -1,0 +1,35 @@
+lib: [
+  "_build/install/default/lib/monoidl/Consumers.ml" {"Consumers.ml"}
+  "_build/install/default/lib/monoidl/Consumers.mli" {"Consumers.mli"}
+  "_build/install/default/lib/monoidl/Logger.ml" {"Logger.ml"}
+  "_build/install/default/lib/monoidl/Logger.mli" {"Logger.mli"}
+  "_build/install/default/lib/monoidl/META" {"META"}
+  "_build/install/default/lib/monoidl/Message.ml" {"Message.ml"}
+  "_build/install/default/lib/monoidl/Message.mli" {"Message.mli"}
+  "_build/install/default/lib/monoidl/monoidl.a" {"monoidl.a"}
+  "_build/install/default/lib/monoidl/monoidl.cma" {"monoidl.cma"}
+  "_build/install/default/lib/monoidl/monoidl.cmi" {"monoidl.cmi"}
+  "_build/install/default/lib/monoidl/monoidl.cmt" {"monoidl.cmt"}
+  "_build/install/default/lib/monoidl/monoidl.cmx" {"monoidl.cmx"}
+  "_build/install/default/lib/monoidl/monoidl.cmxa" {"monoidl.cmxa"}
+  "_build/install/default/lib/monoidl/monoidl.cmxs" {"monoidl.cmxs"}
+  "_build/install/default/lib/monoidl/monoidl.dune" {"monoidl.dune"}
+  "_build/install/default/lib/monoidl/monoidl.ml-gen" {"monoidl.ml-gen"}
+  "_build/install/default/lib/monoidl/monoidl__Consumers.cmi" {"monoidl__Consumers.cmi"}
+  "_build/install/default/lib/monoidl/monoidl__Consumers.cmt" {"monoidl__Consumers.cmt"}
+  "_build/install/default/lib/monoidl/monoidl__Consumers.cmti" {"monoidl__Consumers.cmti"}
+  "_build/install/default/lib/monoidl/monoidl__Consumers.cmx" {"monoidl__Consumers.cmx"}
+  "_build/install/default/lib/monoidl/monoidl__Logger.cmi" {"monoidl__Logger.cmi"}
+  "_build/install/default/lib/monoidl/monoidl__Logger.cmt" {"monoidl__Logger.cmt"}
+  "_build/install/default/lib/monoidl/monoidl__Logger.cmti" {"monoidl__Logger.cmti"}
+  "_build/install/default/lib/monoidl/monoidl__Logger.cmx" {"monoidl__Logger.cmx"}
+  "_build/install/default/lib/monoidl/monoidl__Message.cmi" {"monoidl__Message.cmi"}
+  "_build/install/default/lib/monoidl/monoidl__Message.cmt" {"monoidl__Message.cmt"}
+  "_build/install/default/lib/monoidl/monoidl__Message.cmti" {"monoidl__Message.cmti"}
+  "_build/install/default/lib/monoidl/monoidl__Message.cmx" {"monoidl__Message.cmx"}
+  "_build/install/default/lib/monoidl/opam" {"opam"}
+]
+doc: [
+  "_build/install/default/doc/monoidl/LICENSE.md"
+  "_build/install/default/doc/monoidl/README.md"
+]
