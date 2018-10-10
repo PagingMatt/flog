@@ -31,6 +31,11 @@ let string_of_level lvl =
   | Error       -> "ERROR"
   | Fatal       -> "FATAL"
 
+let cmp_tm (a,_,_) (b,_,_) =
+  let a_tm,_ = mktime a in
+  let b_tm,_ = mktime b in
+  compare b_tm a_tm
+
 let string_of_message (time,lvl,msg) =
   let serialized_tm  = string_of_time time in
   let serialized_lvl = string_of_level lvl in
