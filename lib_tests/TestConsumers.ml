@@ -1,5 +1,5 @@
-open Monoidl
-open Monoidl.Consumers
+open Flog
+open Flog.Consumers
 
 module ListConsumer : Consumer = struct
   type t = Message.t list

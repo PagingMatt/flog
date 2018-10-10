@@ -1,7 +1,7 @@
 (library
- (name monoidl)
- (public_name monoidl))
+ (name flog)
+ (public_name flog))
 
 (documentation
- (package monoidl))
+ (package flog))
 
