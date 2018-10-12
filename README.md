@@ -2,15 +2,15 @@
 
 Lightweight, functional logger for OCaml.
 
-[![Build status](https://ci.appveyor.com/api/projects/status/00kimknfcl7m369g/branch/master?svg=true)](https://ci.appveyor.com/project/m-harrison/monoidl/branch/master) [![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg)](https://github.com/m-harrison/monoidl/blob/master/LICENSE.md)
+[![Build status](https://ci.appveyor.com/api/projects/status/472o50ox0c7307pi/branch/master?svg=true)](https://ci.appveyor.com/project/m-harrison/flog/branch/master) [![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg)](https://github.com/m-harrison/flog/blob/master/LICENSE.md)
 
-API documentation for the package can be viewed [here](https://cdn.rawgit.com/m-harrison/monoidl-dev-docs/HEAD/www/index.html).
+API documentation for the package can be viewed [here](https://cdn.rawgit.com/m-harrison/flog-dev-docs/HEAD/www/index.html).
 
 ## Usage
 
 The idea behind this library is to give a very functional interface to log OCaml code via, even though the action of logging itself might intrinsically be non-functional. Your code need-not suffer from such icki-ness though!
 
-To use the library you need to start by choosing the `Consumer` implementation you want to use. This is important as it determines how your log messages get handled. `monoidl` provides a selection of these for you to choose from, but if none are suitable then you can implement one of your own (I promised that this was an extendable library!)
+To use the library you need to start by choosing the `Consumer` implementation you want to use. This is important as it determines how your log messages get handled. `flog` provides a selection of these for you to choose from, but if none are suitable then you can implement one of your own (I promised that this was an extendable library!)
 
 ```ocaml
 ...
@@ -37,7 +37,7 @@ val (=>|) : 'a t -> ('a -> 'b t) -> 'b t
 val (==|) : 'a t -> Message.t -> 'a t
 ```
 
-If you need to just apply a function to the wrapped value and the function knows nothing about `monoidl` you can use `=>=` to drive the wrapped value along.
+If you need to just apply a function to the wrapped value and the function knows nothing about `flog` you can use `=>=` to drive the wrapped value along.
 
 ```ocaml
 ...

@@ -11,7 +11,7 @@ module Logger (C : Consumer) : sig
   type 'a t
 
   (** Opens a region that can be logged by lifting a value up into the logging
-      monad provided by monoidl. *)
+      monad provided by flog. *)
   val start : 'a -> 'a t
 
   (** Taking a value already lifted into the logging monad, apply a function to
