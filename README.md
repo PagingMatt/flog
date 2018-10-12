@@ -2,7 +2,7 @@
 
 Lightweight, functional logger for OCaml.
 
-[![Build status](https://ci.appveyor.com/api/projects/status/00kimknfcl7m369g/branch/master?svg=true)](https://ci.appveyor.com/project/m-harrison/monoidl/branch/master) [![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg)](https://github.com/m-harrison/flog/blob/master/LICENSE.md)
+[![Build status](https://ci.appveyor.com/api/projects/status/00kimknfcl7m369g/branch/master?svg=true)](https://ci.appveyor.com/project/m-harrison/flog/branch/master) [![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg)](https://github.com/m-harrison/flog/blob/master/LICENSE.md)
 
 API documentation for the package can be viewed [here](https://cdn.rawgit.com/m-harrison/flog-dev-docs/HEAD/www/index.html).
 
