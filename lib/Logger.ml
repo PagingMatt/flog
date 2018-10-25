@@ -1,6 +1,6 @@
 open Consumers
 
-module Logger (C : Consumer) : sig
+module type Logger = sig
   type 'a t
 
   val start : 'a -> 'a t
@@ -12,7 +12,9 @@ module Logger (C : Consumer) : sig
   val (==|) : 'a t -> Message.t -> 'a t
 
   val stop : 'a t -> 'a * (Message.t list) option
-end = struct
+end
+
+module ConsumerLogger (C : Consumer) : Logger = struct
   type 'a t = 'a * C.t
 
   let start x = x,C.empty
