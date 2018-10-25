@@ -18,7 +18,7 @@ let make time_opt lvl msg =
   in msg_time,lvl,msg
 
 let string_of_time time =
-  Printf.sprintf "%d-%d-%dT%02d:%02d:%02dZ"
+  Printf.sprintf "%04d-%02d-%02dT%02d:%02d:%02dZ"
     time.tm_year time.tm_mon time.tm_mday
     time.tm_hour time.tm_min time.tm_sec
 
