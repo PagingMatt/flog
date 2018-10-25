@@ -11,6 +11,8 @@ module type Logger = sig
 
   val (==|) : 'a t -> Message.t -> 'a t
 
+  val (=|=) : 'a t -> ('a -> Message.t) -> 'a t
+
   val stop : 'a t -> 'a * (Message.t list) option
 end
 
@@ -32,6 +34,10 @@ module ConsumerLogger (C : Consumer) : Logger = struct
   let (==|) m msg =
     match m with
     | x,c -> x,(C.consume c msg)
+
+  let (=|=) m f =
+    match m with
+    | x,c -> x,(C.consume c (f x))
 
   let stop (l:'a t) =
     match l with

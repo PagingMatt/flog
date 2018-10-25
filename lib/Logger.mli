@@ -26,8 +26,18 @@ module type Logger = sig
 
   (** Taking a value already lifted into the logging monad and a message to
       pass down the logging consumer, handle the message and pass along the log
-      state. *)
+      state.
+
+      'Pass-through' logging. *)
   val (==|) : 'a t -> Message.t -> 'a t
+
+  (** Taking a value already lifted into the logging monad and a function to
+      construct a message from the wrapped value, apply the function to build a
+      message, pass the message to the underlying consumer and pass along the log
+      state.
+
+      'Pass-in' logging. *)
+  val (=|=) : 'a t -> ('a -> Message.t) -> 'a t
 
   (** When the region that needs to be logged is exited the log can be closed.
       The result of this is the value currently wrapped in the monad and the
