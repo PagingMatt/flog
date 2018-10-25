@@ -2,7 +2,7 @@ open Flog.Logger
 open Flog.Message
 open Unix
 
-include Logger(TestConsumers.ListConsumer)
+include ConsumerLogger(TestConsumers.ListConsumer)
 
 let tm_a = gmtime 1514764801.0
 

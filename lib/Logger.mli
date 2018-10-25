@@ -3,10 +3,8 @@
 
 open Consumers
 
-(** Logger functor wraps around some message consumer. Therefore it is the
-    responsibility of the consumer to actually handle the messages. The concern
-    of the Logger is purely to arrange computations within the logging monad. *)
-module Logger (C : Consumer) : sig
+(** Logger signature. *)
+module type Logger = sig
   (** Logger type which wraps around some value. *)
   type 'a t
 
@@ -38,3 +36,8 @@ module Logger (C : Consumer) : sig
       by the consumer. *)
   val stop : 'a t -> 'a * (Message.t list) option
 end
+
+(** Logger functor wraps around some message consumer. Therefore it is the
+    responsibility of the consumer to actually handle the messages. The concern
+    of the Logger is purely to arrange computations within the logging monad. *)
+module ConsumerLogger (C : Consumer) : Logger
