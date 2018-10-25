@@ -27,7 +27,7 @@ ConsoleLogger.start x
 ...
 ```
 
-Now your value is wrapped in the monad there are three infix operators that can drive your computation.
+Now your value is wrapped in the monad there are four infix operators that can drive your computation. The first two are used to drive computation, while the second two are used to record logs.
 
 ```ocaml
 val (=>=) : 'a t -> ('a -> 'b) -> 'b t
@@ -35,6 +35,8 @@ val (=>=) : 'a t -> ('a -> 'b) -> 'b t
 val (=>|) : 'a t -> ('a -> 'b t) -> 'b t
 
 val (==|) : 'a t -> Message.t -> 'a t
+
+val (=|=) : 'a t -> ('a -> Message.t) -> 'a t
 ```
 
 If you need to just apply a function to the wrapped value and the function knows nothing about `flog` you can use `=>=` to drive the wrapped value along.
@@ -68,6 +70,15 @@ ConsoleLogger.start x
 ...
 ```
 
+As well as logging a concrete message, it is also useful to be able to build a message from a value at a given point in the program. You can use `=|=` to do this which will apply your current value to its parameter and let the underlying consumer handle the resulting message while the same value is passed forward unaltered.
+
+```ocaml
+...
+ConsoleLogger.start "Hello, world."
+=|= (fun m -> Message.make None Information m)
+...
+```
+
 Finally when logging is complete you can drop back out of the monad with the `Logger.stop` function. This unwraps the value wrapped by the logger type and also contractually calls `flush` on the underlying consumer. `flush` may pass some state back in the form of a set of messages.
 
 ```ocaml
@@ -93,6 +104,7 @@ let g x = ConsoleLogger.start (x + 1)
 ConsoleLogger.start 2
 =>= f
 ==| Message.make None Information "Hello, world."
+=|= (fun y -> Message.make None Trace (string_of_int y))
 =>| g
 |> ConsoleLogger.stop
 |> fun x,ms -> ...
